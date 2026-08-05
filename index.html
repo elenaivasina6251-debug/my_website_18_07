@@ -106,7 +106,7 @@
       padding: 1.1rem 1rem;
       border: 1px solid transparent;
       background-color: #f1f5f9; 
-      border-radius: 4px;
+      border-radius: 8px;
       outline: none;
       font-size: 1rem;
       color: #333;
@@ -163,6 +163,26 @@
       transform: scale(1);
     }
     
+    /* Добавленные стили для круглой галочки и переключателей */
+    .round-checkbox {
+      border-radius: 50%;
+    }
+    .segment-btn {
+      flex: 1;
+      text-align: center;
+      padding: 0.6rem 0.5rem;
+      border-radius: 0.5rem;
+      transition: all 0.2s;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #5E7569;
+      background-color: #f1f5f9;
+    }
+    .segment-btn.active {
+      background-color: #5E7569;
+      color: white;
+    }
+    
     .checkbox-link {
       color: inherit;
       text-decoration: underline;
@@ -177,6 +197,7 @@
       color: #5E7569;
     }
 
+    /* Стили модального окна */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -198,7 +219,7 @@
     .modal-content {
       background: white;
       border-radius: 12px;
-      max-width: 550px;
+      max-width: 500px;
       width: 100%;
       padding: 2.5rem;
       transform: scale(0.95);
@@ -261,11 +282,9 @@
         </div>
 
         <div class="md:hidden flex items-center">
-          <button id="hamburger-btn" class="text-brand-sagedeep focus:outline-none p-2" aria-label="Меню">
+          <button id="hamburger-btn" onclick="toggleMobileMenu()" class="text-brand-sagedeep focus:outline-none p-2" aria-label="Меню">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path id="burger-path-1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16"></path>
-              <path id="burger-path-2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12h16"></path>
-              <path id="burger-path-3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 18h16"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
           </button>
         </div>
@@ -273,7 +292,7 @@
     </div>
 
     <!-- Мобильное меню -->
-    <div id="mobile-menu" class="fixed top-20 left-0 w-full bg-white border-b border-gray-100 z-40 p-6 md:hidden shadow-lg">
+    <div id="mobile-menu" class="fixed top-20 left-0 w-full bg-white border-b border-gray-100 z-40 p-6 md:hidden shadow-lg -translate-y-full">
       <div class="flex flex-col space-y-5">
         <a href="#tariffs" onclick="toggleMobileMenu()" class="text-base font-medium hover:text-brand-sagemedium transition-colors">тарифы</a>
         <a href="#accounting" onclick="toggleMobileMenu()" class="text-base font-medium hover:text-brand-sagemedium transition-colors">бухучет</a>
@@ -345,9 +364,9 @@
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-6 pb-8 -mx-4 px-4 md:grid md:grid-cols-3 md:gap-8 md:pb-0 md:mx-0 md:px-0 md:overflow-visible">
         <!-- Карточка 1: СТАРТ -->
-        <div class="bg-brand-dark rounded-[24px] flex flex-col overflow-hidden text-white shadow-xl relative transition-transform hover:-translate-y-2 duration-300">
+        <div class="bg-brand-dark rounded-[24px] flex flex-col overflow-hidden text-white shadow-xl relative transition-transform md:hover:-translate-y-2 duration-300 min-w-[85vw] sm:min-w-[400px] md:min-w-0 snap-center">
           <div class="text-center py-5 border-b border-gray-700/50 uppercase tracking-widest text-xs font-bold text-gray-400">
             Старт
           </div>
@@ -373,7 +392,7 @@
         </div>
 
         <!-- Карточка 2: РОСТ (ХИТ) -->
-        <div class="bg-brand-dark border-2 border-brand-sagemedium rounded-[24px] flex flex-col overflow-hidden text-white shadow-2xl relative transform md:-translate-y-4 transition-transform hover:-translate-y-6 duration-300">
+        <div class="bg-brand-dark border-2 border-brand-sagemedium rounded-[24px] flex flex-col overflow-hidden text-white shadow-2xl relative transform md:-translate-y-4 transition-transform md:hover:-translate-y-6 duration-300 min-w-[85vw] sm:min-w-[400px] md:min-w-0 snap-center">
           <div class="absolute top-0 right-0 bg-brand-sand text-white text-[10px] font-bold px-4 py-1.5 rounded-bl-lg uppercase tracking-wider">
             Хит
           </div>
@@ -402,7 +421,7 @@
         </div>
 
         <!-- Карточка 3: ПРОФИ -->
-        <div class="bg-brand-dark rounded-[24px] flex flex-col overflow-hidden text-white shadow-xl relative transition-transform hover:-translate-y-2 duration-300">
+        <div class="bg-brand-dark rounded-[24px] flex flex-col overflow-hidden text-white shadow-xl relative transition-transform md:hover:-translate-y-2 duration-300 min-w-[85vw] sm:min-w-[400px] md:min-w-0 snap-center">
           <div class="text-center py-5 border-b border-gray-700/50 uppercase tracking-widest text-xs font-bold text-gray-400">
             Профи
           </div>
@@ -441,10 +460,10 @@
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-6 pb-8 -mx-4 px-4 md:grid md:grid-cols-3 md:gap-8 md:pb-0 md:mx-0 md:px-0 md:overflow-visible">
         <!-- Карточка 1 -->
-        <div class="bg-gray-50 hover:bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group">
-          <div class="w-14 h-14 bg-brand-sagelight/20 rounded-2xl flex items-center justify-center text-brand-sagedeep mb-6 group-hover:scale-110 group-hover:bg-brand-sagemedium group-hover:text-white transition-all duration-300">
+        <div class="bg-gray-50 hover:bg-white p-8 rounded-3xl border border-gray-100 shadow-sm md:hover:shadow-xl transition-all duration-300 group min-w-[85vw] sm:min-w-[400px] md:min-w-0 snap-center">
+          <div class="w-14 h-14 bg-brand-sagelight/20 rounded-2xl flex items-center justify-center text-brand-sagedeep mb-6 md:group-hover:scale-110 md:group-hover:bg-brand-sagemedium md:group-hover:text-white transition-all duration-300">
             <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
             </svg>
@@ -456,8 +475,8 @@
         </div>
 
         <!-- Карточка 2 -->
-        <div class="bg-gray-50 hover:bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group">
-          <div class="w-14 h-14 bg-brand-sagelight/20 rounded-2xl flex items-center justify-center text-brand-sagedeep mb-6 group-hover:scale-110 group-hover:bg-brand-sagemedium group-hover:text-white transition-all duration-300">
+        <div class="bg-gray-50 hover:bg-white p-8 rounded-3xl border border-gray-100 shadow-sm md:hover:shadow-xl transition-all duration-300 group min-w-[85vw] sm:min-w-[400px] md:min-w-0 snap-center">
+          <div class="w-14 h-14 bg-brand-sagelight/20 rounded-2xl flex items-center justify-center text-brand-sagedeep mb-6 md:group-hover:scale-110 md:group-hover:bg-brand-sagemedium md:group-hover:text-white transition-all duration-300">
             <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
             </svg>
@@ -469,8 +488,8 @@
         </div>
 
         <!-- Карточка 3 -->
-        <div class="bg-gray-50 hover:bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group">
-          <div class="w-14 h-14 bg-brand-sagelight/20 rounded-2xl flex items-center justify-center text-brand-sagedeep mb-6 group-hover:scale-110 group-hover:bg-brand-sagemedium group-hover:text-white transition-all duration-300">
+        <div class="bg-gray-50 hover:bg-white p-8 rounded-3xl border border-gray-100 shadow-sm md:hover:shadow-xl transition-all duration-300 group min-w-[85vw] sm:min-w-[400px] md:min-w-0 snap-center">
+          <div class="w-14 h-14 bg-brand-sagelight/20 rounded-2xl flex items-center justify-center text-brand-sagedeep mb-6 md:group-hover:scale-110 md:group-hover:bg-brand-sagemedium md:group-hover:text-white transition-all duration-300">
             <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
             </svg>
@@ -498,11 +517,11 @@
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-6 pb-8 -mx-4 px-4 md:grid md:grid-cols-3 md:gap-8 md:pb-0 md:mx-0 md:px-0 md:overflow-visible">
         
         <!-- Карточка ОПиУ -->
-        <div class="bg-white/5 border border-white/10 hover:bg-white/10 p-8 rounded-3xl backdrop-blur-sm transition-all duration-300 group">
-          <div class="w-14 h-14 bg-brand-sand/20 rounded-2xl flex items-center justify-center text-brand-sand mb-6 group-hover:scale-110 group-hover:bg-brand-sand group-hover:text-brand-dark transition-all duration-300">
+        <div class="bg-white/5 border border-white/10 hover:bg-white/10 p-8 rounded-3xl backdrop-blur-sm transition-all duration-300 group min-w-[85vw] sm:min-w-[400px] md:min-w-0 snap-center">
+          <div class="w-14 h-14 bg-brand-sand/20 rounded-2xl flex items-center justify-center text-brand-sand mb-6 md:group-hover:scale-110 md:group-hover:bg-brand-sand md:group-hover:text-brand-dark transition-all duration-300">
             <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path>
             </svg>
@@ -515,8 +534,8 @@
         </div>
 
         <!-- Карточка ДДС -->
-        <div class="bg-white/5 border border-white/10 hover:bg-white/10 p-8 rounded-3xl backdrop-blur-sm transition-all duration-300 group">
-          <div class="w-14 h-14 bg-brand-sagemedium/20 rounded-2xl flex items-center justify-center text-brand-sagemedium mb-6 group-hover:scale-110 group-hover:bg-brand-sagemedium group-hover:text-white transition-all duration-300">
+        <div class="bg-white/5 border border-white/10 hover:bg-white/10 p-8 rounded-3xl backdrop-blur-sm transition-all duration-300 group min-w-[85vw] sm:min-w-[400px] md:min-w-0 snap-center">
+          <div class="w-14 h-14 bg-brand-sagemedium/20 rounded-2xl flex items-center justify-center text-brand-sagemedium mb-6 md:group-hover:scale-110 md:group-hover:bg-brand-sagemedium md:group-hover:text-white transition-all duration-300">
             <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
@@ -529,8 +548,8 @@
         </div>
 
         <!-- Карточка Финдир -->
-        <div class="bg-white/5 border border-white/10 hover:bg-white/10 p-8 rounded-3xl backdrop-blur-sm transition-all duration-300 group">
-          <div class="w-14 h-14 bg-brand-sagelight/20 rounded-2xl flex items-center justify-center text-brand-sagelight mb-6 group-hover:scale-110 group-hover:bg-brand-sagelight group-hover:text-brand-dark transition-all duration-300">
+        <div class="bg-white/5 border border-white/10 hover:bg-white/10 p-8 rounded-3xl backdrop-blur-sm transition-all duration-300 group min-w-[85vw] sm:min-w-[400px] md:min-w-0 snap-center">
+          <div class="w-14 h-14 bg-brand-sagelight/20 rounded-2xl flex items-center justify-center text-brand-sagelight mb-6 md:group-hover:scale-110 md:group-hover:bg-brand-sagelight md:group-hover:text-brand-dark transition-all duration-300">
             <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
             </svg>
@@ -559,46 +578,215 @@
 
       <!-- Переключатель вкладок -->
       <div class="flex justify-center space-x-2 mb-10">
-        <button id="btn-cases" onclick="showTab('cases')" class="px-6 py-2 rounded-full font-bold text-sm bg-sage-deep text-white transition-all">Кейсы</button>
+        <button id="btn-cases" onclick="showTab('cases')" class="px-6 py-2 rounded-full font-bold text-sm bg-brand-sagedeep text-white transition-all">Кейсы</button>
         <button id="btn-reviews" onclick="showTab('reviews')" class="px-6 py-2 rounded-full font-bold text-sm bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all">Отзывы</button>
       </div>
 
       <!-- Контейнер для карточек -->
-      <div id="content-cases" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- Карточка Кейса 1 -->
-        <div class="bg-gray-50 p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-lg transition-all">
-          <div class="text-[10px] font-bold text-sage-medium uppercase tracking-widest mb-3">Кейс 1 • Розница</div>
-          <h4 class="text-xl font-bold mb-4">Группа компаний</h4>
-          <p class="text-gray-600 text-sm leading-relaxed mb-6">После внедрения управленческого учета собственник получил полный контроль над денежными потоками группы компаний и выявил причины регулярной нехватки денег.</p>
-          <div class="text-sage-deep font-bold text-sm">Результат: прозрачность и контроль ДДС.</div>
+      <div id="content-cases" class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-6 pb-8 -mx-4 px-4 md:grid md:grid-cols-3 md:gap-6 md:pb-0 md:mx-0 md:px-0 md:overflow-visible">
+        <!-- Карточка 1 -->
+        <div class="bg-brand-light p-8 rounded-2xl border border-brand-sagemedium/20 shadow-sm min-w-[85vw] sm:min-w-[400px] md:min-w-0 snap-center">
+          <div class="text-4xl font-bold text-brand-sagedeep mb-2">+18%</div>
+          <div class="text-sm font-bold text-brand-sagedeep mb-6">рост рентабельности</div>
+          <div class="text-[11px] text-gray-500 uppercase tracking-wider font-semibold mb-4">ТРАНСПОРТНАЯ КОМПАНИЯ, 6 МАШИН</div>
+          <p class="text-gray-700 text-sm leading-relaxed">Разложила экономику по рейсам и выявила убыточные направления. После пересмотра тарифов рентабельность выросла за 5 месяцев.</p>
         </div>
-        <!-- Карточка Кейса 2 -->
-        <div class="bg-gray-50 p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-lg transition-all">
-          <div class="text-[10px] font-bold text-sage-medium uppercase tracking-widest mb-3">Кейс 2 • Маркетплейс</div>
-          <h4 class="text-xl font-bold mb-4">Селлер на маркетплейсе</h4>
-          <p class="text-gray-600 text-sm leading-relaxed mb-6">Рентабельность бизнеса выросла на 12% без увеличения объема продаж за счет анализа рекламных расходов и корректировки цен.</p>
-          <div class="text-sage-deep font-bold text-sm">Результат: точный контроль маржинальности.</div>
+        
+        <!-- Карточка 2 -->
+        <div class="bg-brand-light p-8 rounded-2xl border border-brand-sagemedium/20 shadow-sm min-w-[85vw] sm:min-w-[400px] md:min-w-0 snap-center">
+          <div class="text-4xl font-bold text-brand-sagedeep mb-2">-1,4 млн ₽</div>
+          <div class="text-sm font-bold text-brand-sagedeep mb-6">налоговой нагрузки в год</div>
+          <div class="text-[11px] text-gray-500 uppercase tracking-wider font-semibold mb-4">ОПТОВАЯ ТОРГОВЛЯ СТРОЙМАТЕРИАЛАМИ</div>
+          <p class="text-gray-700 text-sm leading-relaxed">Сменили налоговый режим и привели в порядок первичку. Легальная экономия без рисков со стороны ФНС.</p>
+        </div>
+
+        <!-- Карточка 3 -->
+        <div class="bg-brand-light p-8 rounded-2xl border border-brand-sagemedium/20 shadow-sm min-w-[85vw] sm:min-w-[400px] md:min-w-0 snap-center">
+          <div class="text-4xl font-bold text-brand-sagedeep mb-2">0</div>
+          <div class="text-sm font-bold text-brand-sagedeep mb-6">кассовых разрывов за год</div>
+          <div class="text-[11px] text-gray-500 uppercase tracking-wider font-semibold mb-4">СТРОИТЕЛЬНЫЙ ПОДРЯД</div>
+          <p class="text-gray-700 text-sm leading-relaxed">Внедрила платежный календарь и ДДС. Собственник видит остаток на 6 недель вперед и планирует закупки заранее.</p>
         </div>
       </div>
 
-      <div id="content-reviews" class="hidden grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Отзыв 1 -->
-        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-           <img src="https://i.yapx.ru/d96YY.jpg" class="rounded-xl w-full" alt="Отзыв 1">
+      <div id="content-reviews" class="!hidden flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-6 pb-8 -mx-4 px-4 md:grid md:grid-cols-3 md:gap-8 md:pb-0 md:mx-0 md:px-0 md:overflow-visible">
+        <!-- Отзыв 1 (Новый) -->
+        <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-between min-w-[85vw] sm:min-w-[400px] md:min-w-0 snap-center">
+           <div>
+             <div class="flex space-x-1 mb-5 text-[#5FC5D1]">
+               <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+               <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+               <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+               <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+               <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+             </div>
+             <p class="text-gray-600 text-lg leading-relaxed mb-8">«Впервые за 7 лет понял, где именно бизнес теряет деньги. Отчеты приходят вовремя, объяснения — человеческим языком.»</p>
+           </div>
+           <div class="pt-5 border-t border-gray-100">
+             <div class="font-bold text-gray-900 text-lg">Андрей К.</div>
+             <div class="text-sm text-gray-500 mt-1">Собственник, грузоперевозки</div>
+           </div>
         </div>
-        <!-- Отзыв 2 -->
-        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-           <img src="https://i.yapx.ru/d96nY.png" class="rounded-xl w-full" alt="Отзыв 2">
+        <!-- Отзыв 2 (Скриншот 1) -->
+        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-center min-w-[85vw] sm:min-w-[400px] md:min-w-0 snap-center">
+           <img src="https://i.yapx.ru/d96YY.jpg" class="rounded-xl w-full h-auto object-contain" alt="Отзыв 1">
         </div>
-        <!-- Отзыв 3 (Добавил placeholder, так как вы просили 3 отзыва) -->
-        <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 flex items-center justify-center text-gray-400 italic">
-           Здесь будет ваш третий отзыв
+        <!-- Отзыв 3 (Скриншот 2) -->
+        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-center min-w-[85vw] sm:min-w-[400px] md:min-w-0 snap-center">
+           <img src="https://i.yapx.ru/d96nY.png" class="rounded-xl w-full h-auto object-contain" alt="Отзыв 2">
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Блок Остались вопросы -->
+  <section class="py-20 bg-[#FAF9F6] text-center border-t border-brand-sagemedium/20 relative overflow-hidden">
+    <!-- Декоративные элементы -->
+    <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-brand-sagelight opacity-20 blur-[80px] pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 rounded-full bg-brand-sand opacity-20 blur-[80px] pointer-events-none"></div>
+    
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 relative z-10">
+      <h2 class="text-3xl font-extrabold text-slate-900 mb-4">Остались вопросы?</h2>
+      <p class="text-lg text-gray-600 mb-8">Разберём вашу ситуацию и покажем, где бизнес теряет деньги — на первой консультации.</p>
+      <button type="button" onclick="openModal()" class="pulse-btn bg-brand-sagedeep text-white px-10 py-4 rounded-xl font-bold text-base shadow-md hover:bg-brand-sagemedium transition-all">
+        Заказать звонок
+      </button>
+    </div>
+  </section>
+
+  <!-- Футер -->
+  <footer class="bg-brand-dark text-white py-14 border-t-4 border-brand-sagedeep">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 border-b border-gray-700 pb-12 mb-8">
+        
+        <!-- Лого и описание -->
+        <div class="md:col-span-5 pr-4">
+          <div class="flex items-center gap-4 mb-5">
+            <div class="w-12 h-12 bg-brand-sagedeep text-white font-bold flex items-center justify-center rounded-xl text-lg shadow-inner">
+              ЕИ
+            </div>
+            <span class="font-bold text-xl tracking-wide">Елена Ивашина</span>
+          </div>
+          <p class="text-base text-gray-400 leading-relaxed max-w-sm font-light">
+            Личный финансовый директор и эксперт по бухгалтерскому учету для транспортных, торговых и строительных компаний.
+          </p>
+        </div>
+
+        <!-- Навигация -->
+        <div class="md:col-span-3">
+          <h4 class="font-bold mb-6 text-lg text-gray-200">Навигация</h4>
+          <ul class="space-y-4 text-sm text-gray-400">
+            <li><a href="#tariffs" class="hover:text-brand-sand hover:underline transition-all">Тарифы</a></li>
+            <li><a href="#accounting" class="hover:text-brand-sand hover:underline transition-all">Бухучет</a></li>
+            <li><a href="#management" class="hover:text-brand-sand hover:underline transition-all">Управленческий учет</a></li>
+            <li><a href="#cases" class="hover:text-brand-sand hover:underline transition-all">Кейсы и отзывы</a></li>
+          </ul>
+        </div>
+
+        <!-- Контакты -->
+        <div class="md:col-span-4">
+          <h4 class="font-bold mb-6 text-lg text-gray-200">Контакты</h4>
+          <ul class="space-y-5 text-sm text-gray-400">
+            <li class="flex items-center gap-3">
+              <svg class="w-5 h-5 text-brand-sagemedium" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+              <a href="tel:+79641605885" class="hover:text-white hover:underline transition-all font-mono">+7-964-160-58-85</a>
+            </li>
+            <li class="flex items-center gap-3">
+              <svg class="w-5 h-5 text-brand-sagemedium" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              <a href="mailto:info_ivashina@mail.ru" class="hover:text-white hover:underline transition-all">info_ivashina@mail.ru</a>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-brand-sagemedium flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+              <span>Рязань • работа по всей России</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Нижняя строка футера -->
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500 font-light">
+        <div>© 2026 Елена Ивашина. Все права защищены.</div>
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2">
+          <a href="https://disk.yandex.ru/i/02MVDoAe-pg3pQ" target="_blank" class="hover:text-brand-sand transition-colors underline">Политика в отношении обработки ПД</a>
+          <a href="https://disk.yandex.ru/i/7yPVOj1sW3P0mg" target="_blank" class="hover:text-brand-sand transition-colors underline">Согласие на ПД</a>
+          <a href="https://disk.yandex.ru/i/mL5R4gQ47QmR6g" target="_blank" class="hover:text-brand-sand transition-colors underline">Согласие на рассылку</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Модальное окно (Заявка) -->
+  <div id="contactModal" class="modal-overlay" onclick="if(event.target === this) closeModal()">
+    <div class="modal-content relative !p-8 max-w-md">
+      <button onclick="closeModal()" class="absolute top-5 right-5 text-gray-400 hover:text-brand-sagedeep transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+      
+      <h3 class="text-2xl font-bold text-brand-dark mb-2">Заявка на консультацию</h3>
+      <p class="text-gray-600 mb-6 text-sm">Оставьте контакты — обсудим задачи вашего бизнеса и подберём формат работы.</p>
+      
+      <form class="space-y-5" onsubmit="submitForm(event)">
+        
+        <div class="space-y-1.5">
+          <label class="block text-sm font-bold text-gray-900">Имя</label>
+          <input type="text" id="formName" placeholder="Как к вам обращаться" class="custom-input !bg-white border !border-gray-200 !rounded-lg" required>
+        </div>
+        
+        <div class="space-y-1.5">
+          <label class="block text-sm font-bold text-gray-900">Телефон</label>
+          <input type="tel" id="formPhone" placeholder="+7 (___) ___-__-__" class="custom-input !bg-white border !border-gray-200 !rounded-lg" required>
+        </div>
+        
+        <div class="space-y-2">
+          <label class="block text-sm font-bold text-gray-900">Куда удобнее ответить</label>
+          <div class="flex gap-2">
+            <button type="button" class="segment-btn active" onclick="setContactMethod(this, 'Телефон')">Телефон</button>
+            <button type="button" class="segment-btn" onclick="setContactMethod(this, 'WA')">MAX</button>
+            <button type="button" class="segment-btn" onclick="setContactMethod(this, 'Telegram')">Telegram</button>
+          </div>
+          <input type="hidden" id="contactMethod" value="Телефон">
+        </div>
+
+        <div class="space-y-1.5">
+          <label class="block text-sm font-bold text-gray-900">Вопрос (необязательно)</label>
+          <textarea id="formQuestion" rows="3" placeholder="Коротко опишите ситуацию в бизнесе" class="custom-input !bg-white border !border-gray-200 !rounded-lg resize-none"></textarea>
+        </div>
+        
+        <div class="space-y-4 pt-2">
+          <label class="flex items-start gap-3 cursor-pointer">
+            <input type="checkbox" class="custom-checkbox round-checkbox mt-0.5" required>
+            <span class="text-xs text-gray-500 leading-snug">
+              Я даю <a href="https://disk.yandex.ru/i/7yPVOj1sW3P0mg" target="_blank" class="checkbox-link">Согласие</a> на обработку персональных данных в соответствии с <a href="https://disk.yandex.ru/i/02MVDoAe-pg3pQ" target="_blank" class="checkbox-link">Политикой в отношении обработки ПД</a>
+            </span>
+          </label>
+          
+          <label class="flex items-start gap-3 cursor-pointer">
+            <input type="checkbox" class="custom-checkbox round-checkbox mt-0.5" required>
+            <span class="text-xs text-gray-500 leading-snug">
+              Я согласен(-на) <a href="https://disk.yandex.ru/i/mL5R4gQ47QmR6g" target="_blank" class="checkbox-link">получать новости и рекламные рассылки</a>
+            </span>
+          </label>
+        </div>
+
+        <button type="submit" class="w-full bg-brand-sagedeep text-white py-4 rounded-xl font-bold text-base shadow-sm hover:bg-brand-sagemedium transition-all mt-6">
+          Отправить заявку
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Кастомное уведомление (Toast) вместо стандартных системных окон -->
+  <div id="customToast" class="fixed bottom-5 right-5 bg-white border-l-4 border-brand-sagedeep shadow-2xl rounded-lg p-5 transform translate-x-[150%] transition-transform duration-300 z-[9999] max-w-sm flex flex-col gap-2">
+    <div class="flex justify-between items-start gap-4">
+      <p id="toastMessage" class="text-sm text-gray-700 font-medium leading-relaxed"></p>
+      <button onclick="hideToast()" class="text-gray-400 hover:text-gray-800 text-xl leading-none">&times;</button>
+    </div>
+  </div>
+
   <script>
+    // --- Логика вкладок (Кейсы / Отзывы) ---
     function showTab(tab) {
       const btnCases = document.getElementById('btn-cases');
       const btnReviews = document.getElementById('btn-reviews');
@@ -606,17 +794,140 @@
       const contentReviews = document.getElementById('content-reviews');
 
       if (tab === 'cases') {
-        contentCases.classList.remove('hidden');
-        contentReviews.classList.add('hidden');
-        btnCases.className = "px-6 py-2 rounded-full font-bold text-sm bg-sage-deep text-white transition-all";
+        contentCases.classList.remove('!hidden');
+        contentReviews.classList.add('!hidden');
+        btnCases.className = "px-6 py-2 rounded-full font-bold text-sm bg-brand-sagedeep text-white transition-all";
         btnReviews.className = "px-6 py-2 rounded-full font-bold text-sm bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all";
       } else {
-        contentCases.classList.add('hidden');
-        contentReviews.classList.remove('hidden');
-        btnReviews.className = "px-6 py-2 rounded-full font-bold text-sm bg-sage-deep text-white transition-all";
+        contentCases.classList.add('!hidden');
+        contentReviews.classList.remove('!hidden');
+        btnReviews.className = "px-6 py-2 rounded-full font-bold text-sm bg-brand-sagedeep text-white transition-all";
         btnCases.className = "px-6 py-2 rounded-full font-bold text-sm bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all";
       }
     }
+
+    // --- Логика модального окна ---
+    const modal = document.getElementById('contactModal');
+    
+    function openModal() {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Блокируем скролл фона
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+      document.body.style.overflow = ''; // Возвращаем скролл
+    }
+
+    // --- Логика уведомлений (Toast) ---
+    function showToast(message, isError = false) {
+      const toast = document.getElementById('customToast');
+      const toastMessage = document.getElementById('toastMessage');
+      
+      toastMessage.innerHTML = message;
+      
+      toast.classList.remove('border-brand-sagedeep', 'border-red-500');
+      toast.classList.add(isError ? 'border-red-500' : 'border-brand-sagedeep');
+      
+      toast.classList.remove('translate-x-[150%]');
+      toast.classList.add('translate-x-0');
+      
+      setTimeout(hideToast, 12000); // скрываем через 12 секунд
+    }
+    
+    function hideToast() {
+      const toast = document.getElementById('customToast');
+      toast.classList.remove('translate-x-0');
+      toast.classList.add('translate-x-[150%]');
+    }
+    
+    async function submitForm(event) {
+        event.preventDefault();
+        
+        const btn = event.target.querySelector('button[type="submit"]');
+        const originalBtnText = btn.innerHTML;
+        btn.innerHTML = 'Отправка...';
+        btn.disabled = true;
+
+        const name = document.getElementById('formName').value;
+        const phone = document.getElementById('formPhone').value;
+        const method = document.getElementById('contactMethod').value;
+        const question = document.getElementById('formQuestion').value;
+        
+        const text = `🔥 Новая заявка с сайта!\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n💬 Связь: ${method}\n❓ Вопрос: ${question || 'Нет'}`;
+        
+        // --- 1. Отправка в Telegram ---
+        // ИСПРАВЛЕН ТОКЕН (буква O вместо нуля)
+        const botToken = '8570444482:AAGcON6jygOdWUkk-Dk-m20mYbp5UhZr7AI';
+        const chatId = '465944588'; 
+        
+        let tgPromise = fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: chatId, text: text })
+        }).then(res => {
+            if (!res.ok) throw new Error('Ошибка Telegram API');
+            return res.json();
+        });
+
+        // --- 2. Отправка на почту ---
+        const emailPromise = fetch('https://formsubmit.co/ajax/elenaivasina6251@gmail.com', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+                _subject: "Новая заявка с сайта (Ивашина Елена)",
+                "Имя": name,
+                "Телефон": phone,
+                "Удобный способ связи": method,
+                "Вопрос": question || 'Не указан'
+            })
+        });
+
+        try {
+            await Promise.all([tgPromise, emailPromise]);
+            
+            showToast(`✅ Заявка успешно отправлена!`);
+            
+            closeModal();
+            event.target.reset();
+        } catch (error) {
+            console.error("Ошибка отправки:", error);
+            showToast('❌ Произошла ошибка при отправке (возможно блокировщик рекламы). Заявка могла быть отправлена не полностью.', true);
+        } finally {
+            btn.innerHTML = originalBtnText;
+            btn.disabled = false;
+        }
+    }
+    
+    // --- Логика переключателя метода связи ---
+    function setContactMethod(btn, method) {
+      // Убираем active со всех кнопок
+      const buttons = btn.parentElement.querySelectorAll('.segment-btn');
+      buttons.forEach(b => b.classList.remove('active'));
+      // Добавляем active на нажатую
+      btn.classList.add('active');
+      // Сохраняем значение в скрытое поле
+      document.getElementById('contactMethod').value = method;
+    }
+
+    // --- Логика мобильного меню ---
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('active');
+      if (menu.classList.contains('active')) {
+          menu.style.transform = 'translateY(0)';
+      } else {
+          menu.style.transform = 'translateY(-100%)';
+      }
+    }
+
+    // --- Полоса прогресса при скролле ---
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('scroll-progress').style.width = scrolled + '%';
+    });
   </script>
 </body>
 </html>
