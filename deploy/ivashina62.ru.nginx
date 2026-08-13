@@ -1,0 +1,33 @@
+server {
+    server_name ivashina62.ru www.ivashina62.ru;
+    root /var/www/ivashina62.ru;
+    index index.html;
+
+    include /etc/nginx/snippets/ivashina62-form.conf;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+
+    location = /README.md {
+        return 404;
+    }
+
+    listen [::]:443 ssl ipv6only=on;
+    listen 443 ssl;
+    ssl_certificate /etc/letsencrypt/live/ivashina62.ru/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/ivashina62.ru/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name ivashina62.ru www.ivashina62.ru;
+    return 301 https://$host$request_uri;
+}
