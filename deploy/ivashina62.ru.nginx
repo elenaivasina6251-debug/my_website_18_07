@@ -1,5 +1,5 @@
 server {
-    server_name ivashina62.ru www.ivashina62.ru;
+    server_name ivashina62.ru;
     root /var/www/ivashina62.ru;
     index index.html;
 
@@ -26,8 +26,21 @@ server {
 }
 
 server {
+    server_name www.ivashina62.ru;
+
+    listen [::]:443 ssl;
+    listen 443 ssl;
+    ssl_certificate /etc/letsencrypt/live/ivashina62.ru/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/ivashina62.ru/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    return 301 https://ivashina62.ru$request_uri;
+}
+
+server {
     listen 80;
     listen [::]:80;
     server_name ivashina62.ru www.ivashina62.ru;
-    return 301 https://$host$request_uri;
+    return 301 https://ivashina62.ru$request_uri;
 }
