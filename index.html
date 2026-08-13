@@ -881,47 +881,29 @@
         const phone = document.getElementById('formPhone').value;
         const method = document.getElementById('contactMethod').value;
         const question = document.getElementById('formQuestion').value;
-        const isNewsletter = document.getElementById('newsletterConsent').checked ? 'Да' : 'Нет';
-        
-        const text = `🔥 Новая заявка с сайта!\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n💬 Связь: ${method}\n❓ Вопрос: ${question || 'Нет'}\n📬 Рассылка: ${isNewsletter}`;
-        
-        // --- 1. Отправка в Telegram (с тайм-аутом 3 секунды) ---
-        const botToken = '8570444482:AAGcON6jygOdWUkk-Dk-m20mYbp5UhZr7AI';
-        const chatId = '465944588'; 
-        
-        const tgPromise = fetchWithTimeout(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: chatId, text: text }),
-            timeout: 3000 // Ждем максимум 3 секунды!
-        });
-
-        // --- 2. Отправка на почту (с тайм-аутом 5 секунд) ---
-        const emailPromise = fetchWithTimeout('https://formsubmit.co/ajax/elenaivasina6251@gmail.com', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify({
-                _subject: "Новая заявка с сайта (Ивашина Елена)",
-                "Имя": name,
-                "Телефон": phone,
-                "Удобный способ связи": method,
-                "Вопрос": question || 'Не указан',
-                "Согласие на рассылку": isNewsletter
-            }),
-            timeout: 5000 // Ждем максимум 5 секунд!
-        });
+        const isNewsletter = document.getElementById('newsletterConsent').checked;
 
         try {
-            // Ждем завершения (максимум 5 секунд, так как оба идут параллельно)
-            const [tgSuccess, emailSuccess] = await Promise.all([tgPromise, emailPromise]);
-            
-            // Если хотя бы один канал сработал
-            if (tgSuccess || emailSuccess) {
+            // Telegram вызывается только сервером: секретный токен не попадает в браузер.
+            const sendSuccess = await fetchWithTimeout('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name,
+                    phone,
+                    method,
+                    question,
+                    newsletter: isNewsletter
+                }),
+                timeout: 8000
+            });
+
+            if (sendSuccess) {
                 showToast(`✅ Заявка успешно отправлена! Мы скоро свяжемся с вами.`);
                 closeModal();
                 event.target.reset();
             } else {
-                showToast('❌ Произошла ошибка сети (блокировка). Пожалуйста, напишите нам на почту.', true);
+                showToast('❌ Не удалось отправить заявку. Пожалуйста, позвоните нам.', true);
             }
         } catch (error) {
             console.error("Системная ошибка:", error);

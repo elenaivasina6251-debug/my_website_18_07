@@ -1,0 +1,21 @@
+[Unit]
+Description=ivashina62.ru Telegram contact form
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=elenai
+Group=elenai
+WorkingDirectory=/var/www/ivashina62.ru
+EnvironmentFile=/etc/ivashina62-form.env
+ExecStart=/usr/bin/python3 /var/www/ivashina62.ru/backend/telegram_form.py
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target
