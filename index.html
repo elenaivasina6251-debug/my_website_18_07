@@ -6,6 +6,7 @@
   <title>Ивашина Елена | Бухгалтерский и управленческий учет</title>
   <meta name="description" content="Бухгалтерское сопровождение и управленческий учет для бизнеса. Ивашина Елена: бухгалтерия, налоги, кадры, отчетность и финансовый контроль.">
   <link rel="canonical" href="https://ivashina62.ru/">
+  <script src="/assets/metrika.js"></script>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -253,6 +254,7 @@
   </style>
 </head>
 <body class="font-sans antialiased">
+  <noscript><div><img src="https://mc.yandex.ru/watch/111595864" style="position:absolute;left:-9999px" alt=""></div></noscript>
 
   <!-- Полоса загрузки (прогресс скролла) -->
   <div id="scroll-progress"></div>
@@ -903,6 +905,9 @@
             });
 
             if (sendSuccess) {
+                if (typeof ym === 'function') {
+                    ym(111595864, 'reachGoal', 'contact_form_sent');
+                }
                 showToast(`✅ Заявка успешно отправлена! Мы скоро свяжемся с вами.`);
                 closeModal();
                 event.target.reset();
