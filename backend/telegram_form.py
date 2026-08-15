@@ -65,6 +65,7 @@ class FormHandler(BaseHTTPRequestHandler):
         method = str(data.get("method", "")).strip()
         question = str(data.get("question", "")).strip()
         newsletter = data.get("newsletter") is True
+        privacy_consent = data.get("privacyConsent") is True
         if (
             not name
             or len(name) > 100
@@ -72,6 +73,7 @@ class FormHandler(BaseHTTPRequestHandler):
             or len(phone) > 50
             or method not in ALLOWED_METHODS
             or len(question) > 2000
+            or not privacy_consent
         ):
             self.send_json(422, {"ok": False})
             return

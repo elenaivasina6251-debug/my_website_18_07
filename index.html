@@ -721,9 +721,9 @@
       <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500 font-light">
         <div>© 2026 Елена Ивашина. Все права защищены.</div>
         <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2">
-          <a href="https://disk.yandex.ru/i/02MVDoAe-pg3pQ" target="_blank" class="hover:text-brand-sand transition-colors underline">Политика в отношении обработки ПД</a>
-          <a href="https://disk.yandex.ru/i/7yPVOj1sW3P0mg" target="_blank" class="hover:text-brand-sand transition-colors underline">Согласие на ПД</a>
-          <a href="https://disk.yandex.ru/i/mL5R4gQ47QmR6g" target="_blank" class="hover:text-brand-sand transition-colors underline">Согласие на рассылку</a>
+          <a href="/privacy/" target="_blank" class="hover:text-brand-sand transition-colors underline">Политика в отношении обработки ПД</a>
+          <a href="/personal-data-consent/" target="_blank" class="hover:text-brand-sand transition-colors underline">Согласие на ПД</a>
+          <a href="/newsletter-consent/" target="_blank" class="hover:text-brand-sand transition-colors underline">Согласие на рассылку</a>
         </div>
       </div>
     </div>
@@ -773,14 +773,14 @@
             <!-- Убрали required, проверяем через JS для надежности на мобильных -->
             <input type="checkbox" id="pdConsent" class="custom-checkbox round-checkbox mt-0.5">
             <span class="text-xs text-gray-500 leading-snug">
-              Я даю <a href="https://disk.yandex.ru/i/7yPVOj1sW3P0mg" target="_blank" class="checkbox-link">Согласие</a> на обработку персональных данных в соответствии с <a href="https://disk.yandex.ru/i/02MVDoAe-pg3pQ" target="_blank" class="checkbox-link">Политикой в отношении обработки ПД</a>
+              Я даю <a href="/personal-data-consent/" target="_blank" class="checkbox-link">Согласие</a> на обработку персональных данных в соответствии с <a href="/privacy/" target="_blank" class="checkbox-link">Политикой в отношении обработки ПД</a>
             </span>
           </label>
           
           <label class="flex items-start gap-3 cursor-pointer">
             <input type="checkbox" id="newsletterConsent" class="custom-checkbox round-checkbox mt-0.5">
             <span class="text-xs text-gray-500 leading-snug">
-              Я согласен(-на) <a href="https://disk.yandex.ru/i/mL5R4gQ47QmR6g" target="_blank" class="checkbox-link">получать новости и рекламные рассылки</a>
+              Я согласен(-на) <a href="/newsletter-consent/" target="_blank" class="checkbox-link">получать новости и рекламные рассылки</a>
             </span>
           </label>
         </div>
@@ -907,7 +907,8 @@
                     phone,
                     method,
                     question,
-                    newsletter: isNewsletter
+                    newsletter: isNewsletter,
+                    privacyConsent: true
                 }),
                 timeout: 8000
             });
