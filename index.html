@@ -106,6 +106,47 @@
     .pulse-btn:active {
       transform: translateY(1px);
     }
+
+    .calculator-nav-link {
+      position: relative;
+      isolation: isolate;
+      padding: 0.55rem 0.8rem;
+      border-radius: 9999px;
+      background: #5E7569;
+      color: #ffffff;
+      white-space: nowrap;
+      box-shadow: 0 0 0 0 rgba(94, 117, 105, 0.55);
+      animation: calculator-nav-pulse 2.4s ease-out infinite;
+    }
+    .calculator-nav-link:hover {
+      color: #ffffff;
+      background: #7A968B;
+      animation-play-state: paused;
+    }
+    @keyframes calculator-nav-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(94, 117, 105, 0); }
+      18% { box-shadow: 0 0 0 9px rgba(94, 117, 105, 0.18); }
+      36% { box-shadow: 0 0 0 15px rgba(94, 117, 105, 0); }
+    }
+
+    .calc-option {
+      border: 1px solid #d9e1dc;
+      border-radius: 0.75rem;
+      background: #ffffff;
+      color: #202A25;
+      padding: 0.85rem 1rem;
+      font-weight: 600;
+      text-align: left;
+      transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+    .calc-option:hover { border-color: #7A968B; transform: translateY(-1px); }
+    .calc-option.is-selected { background: #5E7569; border-color: #5E7569; color: #ffffff; }
+    .calc-check { accent-color: #5E7569; }
+    .calc-result-card { box-shadow: 0 22px 60px rgba(32, 42, 37, 0.14); }
+    @media (prefers-reduced-motion: reduce) {
+      .calculator-nav-link, .pulse-btn::after { animation: none; }
+      .calc-option:hover { transform: none; }
+    }
     @keyframes pulse-ring {
       0% { opacity: 0.6; transform: scale(1); }
       100% { opacity: 0; transform: scale(1.15); }
@@ -286,7 +327,7 @@
         </div>
 
         <nav class="hidden md:flex items-center space-x-8">
-          <a href="#tariffs" class="text-sm font-medium hover:text-brand-sagemedium transition-colors">Калькулятор стоимости услуг</a>
+          <a href="#tariffs" class="calculator-nav-link text-xs font-semibold transition-colors">Калькулятор стоимости услуг</a>
           <a href="/services/accounting/" class="text-sm font-medium hover:text-brand-sagemedium transition-colors">бухучет</a>
           <a href="/services/management-accounting/" class="text-sm font-medium hover:text-brand-sagemedium transition-colors">управленческий учет</a>
           <a href="/about/" class="text-sm font-medium hover:text-brand-sagemedium transition-colors">обо мне</a>
@@ -314,7 +355,7 @@
     <!-- Мобильное меню -->
     <div id="mobile-menu" class="fixed top-20 left-0 w-full bg-white border-b border-gray-100 z-40 p-6 md:hidden shadow-lg -translate-y-full">
       <div class="flex flex-col space-y-5">
-        <a href="#tariffs" onclick="toggleMobileMenu()" class="text-base font-medium hover:text-brand-sagemedium transition-colors">Калькулятор стоимости услуг</a>
+        <a href="#tariffs" onclick="toggleMobileMenu()" class="calculator-nav-link text-sm font-semibold transition-colors text-center">Калькулятор стоимости услуг</a>
         <a href="/services/accounting/" class="text-base font-medium hover:text-brand-sagemedium transition-colors">бухучет</a>
         <a href="/services/management-accounting/" class="text-base font-medium hover:text-brand-sagemedium transition-colors">управленческий учет</a>
         <a href="/about/" class="text-base font-medium hover:text-brand-sagemedium transition-colors">обо мне</a>
@@ -417,18 +458,77 @@
     </div>
   </section>
 
-  <!-- Блок 1: Тарифы -->
+  <!-- Калькулятор стоимости услуг -->
   <section class="py-20 bg-brand-light/50" id="tariffs">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-        <h2 class="text-3xl font-extrabold text-slate-900 sm:text-4xl">Тарифы на услуги</h2>
-        <p class="text-lg text-gray-600">
-          Прозрачное ценообразование. Выберите формат работы, который подходит именно вашему бизнесу на текущем этапе.
+      <div class="text-center max-w-3xl mx-auto mb-10 space-y-4">
+        <p class="text-xs font-bold uppercase tracking-[0.22em] text-brand-sagedeep">Базовое бухгалтерское сопровождение</p>
+        <h2 class="text-3xl font-extrabold text-slate-900 sm:text-4xl">Калькулятор стоимости услуг</h2>
+        <p class="text-lg text-gray-600 leading-relaxed">
+          Ответьте на несколько вопросов и получите ориентировочную стоимость в месяц. Точную стоимость согласуем после знакомства с вашим документооборотом.
         </p>
       </div>
 
-      <div class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-6 pb-8 -mx-4 px-4 md:grid md:grid-cols-3 md:gap-8 md:pb-0 md:mx-0 md:px-0 md:overflow-visible" aria-label="Тарифы">
+      <div class="grid gap-7 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
+        <div class="rounded-3xl border border-[#d9e1dc] bg-white p-6 sm:p-8">
+          <h3 class="text-xl font-bold text-brand-dark">Параметры бизнеса</h3>
+          <p class="mt-2 text-sm leading-relaxed text-gray-600">В расчёт входит базовое бухгалтерское и налоговое сопровождение.</p>
+
+          <div class="mt-7 space-y-7">
+            <fieldset>
+              <legend class="mb-3 font-bold text-brand-dark">Форма бизнеса</legend>
+              <div class="grid grid-cols-2 gap-3 sm:max-w-sm">
+                <button type="button" class="calc-option is-selected" data-calc-entity="ip" aria-pressed="true">ИП</button>
+                <button type="button" class="calc-option" data-calc-entity="ooo" aria-pressed="false">ООО</button>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend class="mb-3 font-bold text-brand-dark">Система налогообложения</legend>
+              <div class="grid gap-3 sm:grid-cols-2">
+                <button type="button" class="calc-option is-selected" data-calc-tax="usn-income" aria-pressed="true">УСН «Доходы»</button>
+                <button type="button" class="calc-option" data-calc-tax="usn-income-expense" aria-pressed="false">УСН «Доходы − расходы»</button>
+                <button type="button" class="calc-option" data-calc-tax="osno" aria-pressed="false">ОСНО</button>
+                <button type="button" class="calc-option" data-calc-tax="ausn" aria-pressed="false">АУСН</button>
+              </div>
+            </fieldset>
+
+            <div class="space-y-3 border-t border-[#d9e1dc] pt-6">
+              <label id="calc-vat-row" class="flex items-center gap-3 text-sm font-medium text-brand-dark">
+                <input id="calc-vat" type="checkbox" class="calc-check h-5 w-5 rounded border-gray-300">
+                Есть НДС при УСН
+              </label>
+              <label id="calc-patent-row" class="flex items-center gap-3 text-sm font-medium text-brand-dark">
+                <input id="calc-patent" type="checkbox" class="calc-check h-5 w-5 rounded border-gray-300">
+                Есть патент
+              </label>
+            </div>
+
+            <details class="rounded-xl bg-brand-light p-4 text-sm text-gray-600">
+              <summary class="cursor-pointer font-semibold text-brand-dark">Что учитываем при точном расчёте</summary>
+              <p class="mt-3 leading-relaxed">Количество первичных документов и операций, банк и кассу, сотрудников и зарплату, ЭДО, сверки и нестандартные задачи. Эти процессы обсуждаем отдельно, чтобы не включать расширенные работы в базовую стоимость.</p>
+            </details>
+          </div>
+        </div>
+
+        <aside class="calc-result-card rounded-3xl bg-brand-dark p-7 text-white sm:p-8 lg:sticky lg:top-28" aria-live="polite">
+          <p class="text-sm text-brand-sagelight">Предварительная стоимость</p>
+          <p id="calc-price" class="mt-3 text-5xl font-bold tracking-tight">от 5 000 ₽</p>
+          <p class="mt-1 text-xl text-brand-sagelight">в месяц</p>
+          <p id="calc-description" class="mt-5 text-sm leading-relaxed text-gray-300">Базовое сопровождение: ИП, УСН «Доходы».</p>
+          <div id="calc-breakdown" class="mt-6 space-y-3 border-y border-white/15 py-5 text-sm"></div>
+          <button type="button" class="pulse-btn mt-6 w-full rounded-xl px-4 py-4 text-base font-bold" onclick="openCalculatorModal()">Получить точный расчёт</button>
+          <p class="mt-5 text-xs leading-relaxed text-gray-400">Стоимость ориентировочная. Расширенные бизнес-процессы согласуются индивидуально.</p>
+        </aside>
+      </div>
+
+      <div class="mt-16 border-t border-[#d9e1dc] pt-12">
+        <h3 class="text-center text-2xl font-bold text-brand-dark">Форматы работы</h3>
+        <p class="mx-auto mt-3 max-w-2xl text-center text-gray-600">Выберите формат, который подходит вашему бизнесу на текущем этапе.</p>
+      </div>
+
+      <div class="mt-10 flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-6 pb-8 -mx-4 px-4 md:grid md:grid-cols-3 md:gap-8 md:pb-0 md:mx-0 md:px-0 md:overflow-visible" aria-label="Тарифы">
         <!-- Карточка 1: СТАРТ -->
         <div class="bg-brand-dark rounded-[24px] flex flex-col overflow-hidden text-white shadow-xl relative transition-transform md:hover:-translate-y-2 duration-300 min-w-[85vw] sm:min-w-[400px] md:min-w-0 snap-center">
           <div class="text-center py-5 border-b border-gray-700/50 uppercase tracking-widest text-xs font-bold text-gray-400">
@@ -476,7 +576,7 @@
             <p class="text-[11px] text-gray-500 mt-2 leading-tight">Пересчет стоимости только по взаимной договоренности!</p>
           </div>
           <div class="px-8 pt-6 pb-6">
-             <button type="button" onclick="openModal()" class="w-full bg-brand-sagedeep hover:bg-brand-sagemedium rounded-lg py-3 text-[13px] text-white transition-colors">Почему я — ваш партнер?</button>
+             <button type="button" disabled aria-disabled="true" title="Скоро расскажем подробнее" class="w-full cursor-not-allowed rounded-lg bg-brand-sagedeep/70 py-3 text-[13px] text-white/80">Почему я — ваш партнер?</button>
           </div>
           <button type="button" onclick="openModal()" class="w-full bg-brand-sand hover:bg-[#A9988A] text-white font-bold py-5 transition-colors text-[15px] uppercase tracking-wider flex justify-center items-center gap-2">
             <span>Обсудить усиление бизнеса</span>
@@ -1046,6 +1146,117 @@
       // Сохраняем значение в скрытое поле
       document.getElementById('contactMethod').value = method;
     }
+
+    // --- Калькулятор базового бухгалтерского сопровождения ---
+    const calculatorState = { entity: 'ip', tax: 'usn-income' };
+    const calculatorLabels = {
+      entity: { ip: 'ИП', ooo: 'ООО' },
+      tax: {
+        'usn-income': 'УСН «Доходы»',
+        'usn-income-expense': 'УСН «Доходы − расходы»',
+        osno: 'ОСНО',
+        ausn: 'АУСН'
+      }
+    };
+
+    function calculatorAmount() {
+      const vat = document.getElementById('calc-vat').checked;
+      const patent = document.getElementById('calc-patent').checked;
+      const base = calculatorState.entity === 'ooo' ? 12300 : 5000;
+      const extras = [];
+      let total = base;
+
+      if (vat && calculatorState.tax.startsWith('usn')) {
+        total += 1320;
+        extras.push(['НДС при УСН', 1320]);
+      }
+      if (patent && calculatorState.entity === 'ip') {
+        total += 1010;
+        extras.push(['Патент', 1010]);
+      }
+
+      return {
+        total: Math.ceil(total / 100) * 100,
+        base,
+        extras
+      };
+    }
+
+    function updateCalculator() {
+      const vatRow = document.getElementById('calc-vat-row');
+      const patentRow = document.getElementById('calc-patent-row');
+      const vatSupported = calculatorState.tax.startsWith('usn');
+      const patentSupported = calculatorState.entity === 'ip';
+
+      vatRow.classList.toggle('hidden', !vatSupported);
+      patentRow.classList.toggle('hidden', !patentSupported);
+      if (!vatSupported) document.getElementById('calc-vat').checked = false;
+      if (!patentSupported) document.getElementById('calc-patent').checked = false;
+
+      document.querySelectorAll('[data-calc-entity]').forEach((button) => {
+        const selected = button.dataset.calcEntity === calculatorState.entity;
+        button.classList.toggle('is-selected', selected);
+        button.setAttribute('aria-pressed', String(selected));
+      });
+      document.querySelectorAll('[data-calc-tax]').forEach((button) => {
+        const selected = button.dataset.calcTax === calculatorState.tax;
+        button.classList.toggle('is-selected', selected);
+        button.setAttribute('aria-pressed', String(selected));
+      });
+
+      const result = calculatorAmount();
+      const format = (value) => new Intl.NumberFormat('ru-RU').format(value);
+      document.getElementById('calc-price').textContent = `от ${format(result.total)} ₽`;
+      document.getElementById('calc-description').textContent = `Базовое сопровождение: ${calculatorLabels.entity[calculatorState.entity]}, ${calculatorLabels.tax[calculatorState.tax]}.`;
+
+      const rows = [['Базовое сопровождение', result.base], ...result.extras];
+      const breakdown = document.getElementById('calc-breakdown');
+      breakdown.replaceChildren();
+      rows.forEach(([label, value]) => {
+        const row = document.createElement('div');
+        row.className = 'flex items-start justify-between gap-4';
+        const name = document.createElement('span');
+        name.className = 'text-gray-300';
+        name.textContent = label;
+        const amount = document.createElement('strong');
+        amount.className = 'shrink-0 text-white';
+        amount.textContent = `${format(value)} ₽`;
+        row.append(name, amount);
+        breakdown.append(row);
+      });
+    }
+
+    function openCalculatorModal() {
+      const result = calculatorAmount();
+      const additions = [];
+      if (document.getElementById('calc-vat').checked) additions.push('НДС при УСН');
+      if (document.getElementById('calc-patent').checked) additions.push('патент');
+      const message = [
+        'Расчёт из калькулятора:',
+        `${calculatorLabels.entity[calculatorState.entity]}, ${calculatorLabels.tax[calculatorState.tax]}`,
+        additions.length ? `Дополнительно: ${additions.join(', ')}` : '',
+        `Ориентир: от ${new Intl.NumberFormat('ru-RU').format(result.total)} ₽/мес.`
+      ].filter(Boolean).join('. ');
+      document.getElementById('formQuestion').value = message;
+      if (typeof ym === 'function') ym(111595864, 'reachGoal', 'calculator_request');
+      openModal();
+    }
+
+    document.querySelectorAll('[data-calc-entity]').forEach((button) => {
+      button.addEventListener('click', () => {
+        calculatorState.entity = button.dataset.calcEntity;
+        updateCalculator();
+      });
+    });
+    document.querySelectorAll('[data-calc-tax]').forEach((button) => {
+      button.addEventListener('click', () => {
+        calculatorState.tax = button.dataset.calcTax;
+        updateCalculator();
+      });
+    });
+    document.getElementById('calc-vat').addEventListener('change', updateCalculator);
+    document.getElementById('calc-patent').addEventListener('change', updateCalculator);
+    updateCalculator();
 
     // --- Логика мобильного меню ---
     function toggleMobileMenu() {
