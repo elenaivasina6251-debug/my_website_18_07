@@ -15,3 +15,13 @@ ym(111595864, 'init', {
   trackLinks: true,
   accurateTrackBounce: true
 });
+
+window.trackMetrikaGoal = function (goalName) {
+  if (typeof ym === 'function') ym(111595864, 'reachGoal', goalName);
+};
+
+document.addEventListener('click', function (event) {
+  if (event.target.closest('a[href^="tel:"]')) {
+    window.trackMetrikaGoal('phone_click');
+  }
+});

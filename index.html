@@ -15,6 +15,16 @@
     (window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
 
     ym(111595864,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
+
+    window.trackMetrikaGoal = function(goalName) {
+      if (typeof ym === 'function') ym(111595864, 'reachGoal', goalName);
+    };
+
+    document.addEventListener('click', function(event) {
+      if (event.target.closest('a[href^="tel:"]')) {
+        window.trackMetrikaGoal('phone_click');
+      }
+    });
   </script>
   <!-- /Yandex.Metrika counter -->
   
@@ -1118,6 +1128,12 @@
       btn.setAttribute('aria-pressed', 'true');
       // Сохраняем значение в скрытое поле
       document.getElementById('contactMethod').value = method;
+
+      const goalByMethod = {
+        MAX: 'contact_method_max',
+        Telegram: 'contact_method_telegram'
+      };
+      if (goalByMethod[method]) window.trackMetrikaGoal(goalByMethod[method]);
     }
 
     // --- Калькулятор базового бухгалтерского сопровождения ---

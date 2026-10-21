@@ -109,6 +109,17 @@
   <script>
     const form = document.getElementById('business-start-form');
     const status = document.getElementById('start-form-status');
+    const replyMethod = document.getElementById('start-reply');
+    replyMethod.addEventListener('change', () => {
+      const goalByMethod = {
+        MAX: 'contact_method_max',
+        Telegram: 'contact_method_telegram'
+      };
+      const goalName = goalByMethod[replyMethod.value];
+      if (goalName && typeof window.trackMetrikaGoal === 'function') {
+        window.trackMetrikaGoal(goalName);
+      }
+    });
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       status.className = 'form-status';
