@@ -18,35 +18,7 @@
   </script>
   <!-- /Yandex.Metrika counter -->
   
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-  
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
-          },
-          colors: {
-            brand: {
-              taupe: '#C6BFB8',
-              sand: '#BFAFA0',
-              sagelight: '#9DB2AF',
-              sagemedium: '#7A968B',
-              sagedeep: '#5E7569',
-              dark: '#202A25',
-              light: '#F7F6F4'
-            }
-          }
-        }
-      }
-    }
-  </script>
+  <link rel="stylesheet" href="assets/home.css?v=20261021">
 
   <style>
     /* Плавный скролл и отступ для фиксированной шапки */
@@ -55,8 +27,8 @@
       scroll-padding-top: 80px;
     }
     body {
-      background-color: theme('colors.brand.light');
-      color: theme('colors.brand.dark');
+      background-color: #F7F6F4;
+      color: #202A25;
       font-family: 'Inter', sans-serif;
       overflow-x: hidden;
     }
@@ -796,11 +768,11 @@
         </div>
         <!-- Отзыв 2 (Скриншот 1) -->
         <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-center min-w-[85vw] sm:min-w-[400px] md:min-w-0 snap-center">
-           <img src="https://i.yapx.ru/d96YY.jpg" class="rounded-xl w-full h-auto object-contain" alt="Отзыв 1">
+           <img src="https://i.yapx.ru/d96YY.jpg" class="rounded-xl w-full h-auto object-contain" alt="Отзыв 1" loading="lazy" decoding="async" width="1536" height="2752">
         </div>
         <!-- Отзыв 3 (Скриншот 2) -->
         <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-center min-w-[85vw] sm:min-w-[400px] md:min-w-0 snap-center">
-           <img src="https://i.yapx.ru/d96nY.png" class="rounded-xl w-full h-auto object-contain" alt="Отзыв 2">
+           <img src="assets/images/review-2.png" class="rounded-xl w-full h-auto object-contain" alt="Отзыв 2" loading="lazy" decoding="async" width="493" height="874">
         </div>
       </div>
       <p class="md:hidden mt-1 text-center text-sm text-gray-500" aria-hidden="true">← Листайте карточки →</p>
